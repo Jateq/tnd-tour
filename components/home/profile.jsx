@@ -8,15 +8,59 @@ import './profile.css'
 import Image from "next/image";
 
 function Profile({ session }) {
-    const [name, setName] = useState("Temirlan");
+    const { email, image } = session?.user || {};
+
+
+    const [name, setName] = useState(email);
     const [age, setAge] = useState(19);
     const [location, setLocation] = useState("Almaty, KZ");
     const [bio, setBio] = useState("Student at KBTU");
+    const [bigEdit, setBigEdit] = useState(true);
+    const [bigStays, setBigStays] = useState(false);
+    const [bigFlights, setBigFlights] = useState(false);
+    const [bigMembership, setBigMembership] = useState(false);
+    const [bigNotifications, setBigNotifications] = useState(false);
+    const [bigHelp, setBigHelp] = useState(false);
+
+
+
     const [isEditing, setIsEditing] = useState(false);
     const [isDisplayed, setIsDisplayed] = useState(true);
 
 
-    const { email, image } = session?.user || {};
+    const handleNavClick = (navName) => {
+        setBigEdit(false);
+        setBigStays(false);
+        setBigFlights(false);
+        setBigMembership(false);
+        setBigNotifications(false);
+        setBigHelp(false);
+
+        switch (navName) {
+            case 'edit':
+                setBigEdit(true);
+                break;
+            case 'stays':
+                setBigStays(true);
+                break;
+            case 'flights':
+                setBigFlights(true);
+                break;
+            case 'membership':
+                setBigMembership(true);
+                break;
+            case 'notifications':
+                setBigNotifications(true);
+                break;
+            case 'help':
+                setBigHelp(true);
+                break;
+            default:
+                break;
+        }
+    };
+
+
     const handleEditClick = () => {
         setIsEditing(true);
         setIsDisplayed(false);
@@ -28,53 +72,123 @@ function Profile({ session }) {
     };
 
     const displayedBlock = useMemo(() => (
-        <div className='displayed-block'>
+        <main className='person-info'>
             <h1>{name}</h1>
 
-            <p>Age: {age}</p>
             <p>Location: {location}</p>
             <p>Bio: {bio}</p>
-        </div>
+            <p>Age: {age}</p>
+        </main>
+
     ), [name, age, location, bio]);
 
-    return (
-        <div className="main-block">
-            <div className="profile">
-            <Image
-                alt={email}
-                src={image || `https://avatars.dicebear.com/api/micah/${email}.svg`}
-                width={40}
-                height={40}
-                className="rounded-full"
-            />
 
-            {isDisplayed && displayedBlock}
+    const editBlock = useMemo(() => (
+        <div>
             {isEditing ? (
-                <div>
+                <main className='person-info'>
                     <label>
-                        Name:
+                        Username:
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                     </label>
                     <label>
                         Age:
                         <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
                     </label>
-
                     <label>
                         Bio:
                         <textarea value={bio} onChange={(e) => setBio(e.target.value)} />
                     </label>
                     <button onClick={handleSaveClick}>Save</button>
-                </div>
+                </main>
             ) : (
-                <button onClick={handleEditClick}>Edit</button>
+                <div className='person-info'>
+                    {displayedBlock}
+                    <button onClick={handleEditClick}>Edit</button>
+                </div>
             )}
-
-            </div>
-            <div>
-                Hello
-            </div>
         </div>
+    ), [isEditing, displayedBlock, name, age, bio, handleSaveClick, handleEditClick]);
+
+    const staysBlock = useMemo(() => (
+        <div>Your stays</div>
+    ), []);
+
+    const flightsBlock = useMemo(() => (
+        <div>Your flights</div>
+    ), []);
+
+    const membershipBlock = useMemo(() => (
+        <div>Your membership</div>
+    ), []);
+
+    const notificationsBlock = useMemo(() => (
+        <div>Email notifications</div>
+    ), []);
+
+    const helpBlock = useMemo(() => (
+        <div>Help</div>
+    ), []);
+
+
+
+    return (
+        <div className="main-block">
+            <div className="profile">
+                <Image
+                    alt={email}
+                    src={image || `https://avatars.dicebear.com/api/micah/${email}.svg`}
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                />
+                <div className="left">
+                    <div className="left-settings">
+
+
+                            <div onClick={() => handleNavClick('edit')}>
+                                Edit profile
+                            </div>
+
+                        <div onClick={() => handleNavClick('stays')}>
+                            Your stays
+                        </div>
+                        <div onClick={() => handleNavClick('flights')}>
+                            Your flights
+                        </div>
+                        <div onClick={() => handleNavClick('membership')}>
+                            Your membership
+                        </div>
+                        <div onClick={() => handleNavClick('notifications')}>
+                            Email notifications
+                        </div>
+                        <div onClick={() => handleNavClick('help')}>
+                            Help
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+                <div className='right'>
+                    <div className="big-edit">
+                    <div className='editprof-block'>
+
+                        {bigEdit && editBlock}
+                        {bigStays && staysBlock}
+                        {bigFlights && flightsBlock}
+                        {bigMembership && membershipBlock}
+                        {bigNotifications && notificationsBlock}
+                        {bigHelp && helpBlock}
+
+                    </div>
+
+
+                </div>
+
+                </div>
+        </div>
+
     );
 }
 
