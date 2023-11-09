@@ -10,6 +10,22 @@ import Image from "next/image";
 function Profile({ session }) {
     const { email, image } = session?.user || {};
 
+    //Flights
+    const storedFlightsCity = localStorage.getItem('flightsCity');
+    // const storedFlightsTo = localStorage.getItem('flightsTo');
+    const storedFlightsDeparture = localStorage.getItem('flightsDeparture');
+    const storedFlightsReturn = localStorage.getItem('flightsReturn');
+    const storedFlightPassengers = localStorage.getItem('flightsPassengers');
+    console.log(storedFlightsCity, storedFlightsDeparture, storedFlightsReturn, storedFlightPassengers);
+
+
+    // Stays
+    const storedStayCity = localStorage.getItem('stayCity');
+    const storedStayHotel = localStorage.getItem('stayHotel');
+    const storedAdults = localStorage.getItem('adults');
+    const storedChildren = localStorage.getItem('children');
+    const storedDepartureDate = localStorage.getItem('departureDate');
+    const storedReturnDate = localStorage.getItem('returnDate');
 
     const [name, setName] = useState(email);
     const [age, setAge] = useState(19);
@@ -110,12 +126,49 @@ function Profile({ session }) {
         </div>
     ), [isEditing, displayedBlock, name, age, bio, handleSaveClick, handleEditClick]);
 
-    const staysBlock = useMemo(() => (
-        <div>Your stays</div>
-    ), []);
+    const staysBlock = useMemo(() => {
+        if (
+            storedDepartureDate === null ||
+            storedReturnDate === null ||
+            storedAdults === null ||
+            storedChildren === null ||
+            storedStayCity === null ||
+            storedStayHotel === null
+        ) {
+            return (
+                <div>
+                    <div>Your stays</div>
+                    <div className='profile-stay-block'>
+                        <p>Nothing reserved yet</p>
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <div>Your stays</div>
+                    <div className='profile-stay-block'>
+                        <p>You have reserved from</p>
+                        <p>{storedDepartureDate} to {storedReturnDate}</p>
+                        <p>for {storedAdults} adults and {storedChildren} children</p>
+                        <p>to {storedStayCity} in {storedStayHotel}</p>
+                    </div>
+                </div>
+            );
+        }
+    }, [storedDepartureDate, storedReturnDate, storedAdults, storedChildren, storedStayCity, storedStayHotel]);
+
 
     const flightsBlock = useMemo(() => (
-        <div>Your flights</div>
+        <div>
+            <div>Your Flights</div>
+            <div className='profile-stay-block'>
+                <p>You have reserved flight from</p>
+                <p>{storedFlightsCity} to </p>
+                <p>for {storedFlightPassengers} passenger/s</p>
+                <p>from {storedFlightsDeparture} till {storedFlightsReturn}</p>
+            </div>
+        </div>
     ), []);
 
     const membershipBlock = useMemo(() => (

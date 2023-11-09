@@ -14,6 +14,11 @@ const StayPage = ({params}) => {
         return <div>Stay not found</div>
     }
 
+                localStorage.setItem('stayCity', stay.city);
+                localStorage.setItem('stayHotel', stay.hotel);
+                console.log('Data saved to localStorage');
+
+
     return (
         <div>
         <StayDetail stay={stay} />

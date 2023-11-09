@@ -15,6 +15,8 @@ export default function Slider() {
 
 
 
+
+
     return (
         <>
             <div className='slider-container'>
@@ -27,7 +29,7 @@ export default function Slider() {
                             <p>{stay.desc}</p>
                             <p>Rating: {stay.rating}</p>
                             <Link href={`/stays/${stay.id}`}>
-                                <button>View details</button>
+                                <button >View details</button>
                             </Link>
                         </div>
                     ))}

@@ -8,8 +8,11 @@ const ReservedModal = ({ showModal, setShowModal }) => {
         const storedChildren = localStorage.getItem('children');
         const storedDepartureDate = localStorage.getItem('departureDate');
         const storedReturnDate = localStorage.getItem('returnDate');
+        const storedStayCity = localStorage.getItem('stayCity');
+        const storedStayHotel = localStorage.getItem('stayHotel');
 
-        console.log(storedAdults, storedChildren, storedDepartureDate, storedReturnDate);
+
+        console.log(storedStayCity, storedStayHotel,storedAdults, storedChildren, storedDepartureDate, storedReturnDate);
 
 
     return (
@@ -42,7 +45,9 @@ const ReservedModal = ({ showModal, setShowModal }) => {
 
                                 <div className="p-6">
                                     <h3 className="font-display text-2xl font-bold">Reserved!</h3>
-                                    <p>For {storedAdults} adults and {storedChildren} children, departing on {storedDepartureDate} and returning on {storedReturnDate}</p>
+                                    <p>To {storedStayCity}, {storedStayHotel} for {storedAdults} adults and {storedChildren} children, departing on {storedDepartureDate} and returning on {storedReturnDate}
+
+                                    </p>
                                     <Link href={'/profile'}>
                                         <button className='hover:bg-white border border-[#4c9e9e] px-5 rounded py-2 hover:text-[#4c9e9e] bg-[#4c9e9e] text-white duration-75 mt-5' >See in profile</button>
                                     </Link>

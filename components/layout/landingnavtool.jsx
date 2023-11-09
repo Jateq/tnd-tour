@@ -5,6 +5,39 @@ export default function Landingnavtool() {
     const [activeTab, setActiveTab] = useState('Flights');
     const [inputValue, setInputValue] = useState('');
 
+    // For flights
+    const [flightsCity, setFlightsCity] = useState('');
+    const [flightsDeparture, setFlightsDeparture] = useState('')
+    const [flightsReturn, setFlightsReturn] = useState('')
+    const [flightsPassengers, setFlightsPassengers] = useState(0)
+
+    function handleFlightsCityChange(event) {
+        const value = event.target.value;
+        setFlightsCity(value);
+        localStorage.setItem('flightsCity', value);
+    }
+
+    function handleFlightsDepartureChange(event) {
+        const value = event.target.value;
+        setFlightsDeparture(value);
+        localStorage.setItem('flightsDeparture', value);
+    }
+
+    function handleFlightsReturnChange(event) {
+        const value = event.target.value;
+        setFlightsReturn(value);
+        localStorage.setItem('flightsReturn', value);
+    }
+
+    function handleFlightsPassengersChange(event) {
+        const value = parseInt(event.target.value, 10);
+        setFlightsPassengers(value);
+        localStorage.setItem('flightsPassengers', value);
+    }
+
+
+
+
     // For stays
     const [adults, setAdults] = useState(1);
     const [children, setChildren] = useState(0);
@@ -33,27 +66,6 @@ export default function Landingnavtool() {
 
 
 
-    const [results, setResults] = useState([]);
-    const [place, setPlace] = useState('')
-
-
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value);
-    };
-
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await fetch(`/api/city/${inputValue}`);
-            const data = await response.json();
-            console.log(data); // Log the API response
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
-
 
     const handleTabClick = (tabName) => {
         setActiveTab(tabName);
@@ -80,22 +92,17 @@ export default function Landingnavtool() {
                     <div className={`tab_pane ${activeTab === 'Flights' ? 'active' : ''}`} id="flights">
                         <div className="tab_container">
                             <div className="flex justify-between mb-4">
-                                <div className="w-1/2">
+                                <div className="w-full">
                                     <label className="block text-sm font-medium text-gray-700 mb-2">From</label>
                                     <input
                                         type="text"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         placeholder="Departure city"
+                                        value={flightsCity}
+                                        onChange={handleFlightsCityChange}
                                     />
                                 </div>
-                                <div className="w-1/2">
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">To</label>
-                                    <input
-                                        type="text"
-                                        className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="Destination city"
-                                    />
-                                </div>
+
                             </div>
                             <div className="flex justify-between mb-4">
                                 <div className="w-1/4">
@@ -103,6 +110,8 @@ export default function Landingnavtool() {
                                     <input
                                         type="date"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
+                                        value={flightsDeparture}
+                                        onChange={handleFlightsDepartureChange}
                                     />
                                 </div>
                                 <div className="w-1/4">
@@ -110,6 +119,8 @@ export default function Landingnavtool() {
                                     <input
                                         type="date"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
+                                        value={flightsReturn}
+                                        onChange={handleFlightsReturnChange}
                                     />
                                 </div>
                                 <div className="w-1/4">
@@ -118,6 +129,8 @@ export default function Landingnavtool() {
                                         type="number"
                                         min="1"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
+                                        value={flightsPassengers}
+                                        onChange={handleFlightsPassengersChange}
                                     />
                                 </div>
                                 <div className='w-1/4'>
