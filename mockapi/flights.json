@@ -1,0 +1,30 @@
+{
+    "flightsData":
+    [
+        {
+            "destination": "Almaty",
+            "price": 100000,
+            "desc": "Direct flights to ALA"
+        },
+        {
+            "destination": "Milan",
+            "price": 280000,
+            "desc": "Indirect flights to Europe cities!"
+        },
+        {
+            "destination": "Paris",
+            "price": 340000,
+            "desc": "Indirect flights to Europe cities!"
+        },
+        {
+            "destination": "Astana",
+            "price": 100000,
+            "desc": "Direct flights to the capital of Kazakhstan"
+        },
+        {
+            "destination": "Shymkent",
+            "price": 95000,
+            "desc": "Other cities of beloved Kazakhstan"
+        }
+    ]
+}
