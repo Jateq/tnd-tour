@@ -1,30 +1,104 @@
 {
-    "flightsData":
-    [
-        {
-            "destination": "Almaty",
-            "price": 100000,
-            "desc": "Direct flights to ALA"
-        },
-        {
-            "destination": "Milan",
-            "price": 280000,
-            "desc": "Indirect flights to Europe cities!"
-        },
-        {
-            "destination": "Paris",
-            "price": 340000,
-            "desc": "Indirect flights to Europe cities!"
-        },
-        {
-            "destination": "Astana",
-            "price": 100000,
-            "desc": "Direct flights to the capital of Kazakhstan"
-        },
-        {
-            "destination": "Shymkent",
-            "price": 95000,
-            "desc": "Other cities of beloved Kazakhstan"
-        }
-    ]
+  "flightsData": [
+    {
+      "destination": "Almaty",
+      "price": 100000,
+      "desc": "Direct flights to ALA"
+    },
+    {
+      "destination": "Milan",
+      "price": 280000,
+      "desc": "Indirect flights to Europe cities!"
+    },
+    {
+      "destination": "Paris",
+      "price": 340000,
+      "desc": "Indirect flights to Europe cities!"
+    },
+    {
+      "destination": "Astana",
+      "price": 100000,
+      "desc": "Direct flights to the capital of Kazakhstan"
+    },
+    {
+      "destination": "Shymkent",
+      "price": 95000,
+      "desc": "Other cities of beloved Kazakhstan"
+    },
+    {
+      "destination": "Tokyo",
+      "price": 320000,
+      "desc": "Explore the vibrant city of Tokyo!"
+    },
+    {
+      "destination": "New York",
+      "price": 400000,
+      "desc": "Indirect flights to the Big Apple"
+    },
+    {
+      "destination": "London",
+      "price": 380000,
+      "desc": "Indirect flights to Europe's iconic capital"
+    },
+    {
+      "destination": "Sydney",
+      "price": 450000,
+      "desc": "Discover the beauty of Sydney, Australia"
+    },
+    {
+      "destination": "Dubai",
+      "price": 300000,
+      "desc": "Direct flights to the dazzling city of Dubai"
+    },
+    {
+      "destination": "Rio de Janeiro",
+      "price": 500000,
+      "desc": "Indirect flights to the lively Brazilian city"
+    },
+    {
+      "destination": "Cape Town",
+      "price": 420000,
+      "desc": "Explore the scenic beauty of Cape Town"
+    },
+    {
+      "destination": "Beijing",
+      "price": 280000,
+      "desc": "Direct flights to the capital of China"
+    },
+    {
+      "destination": "Rome",
+      "price": 360000,
+      "desc": "Indirect flights to the historic city of Rome"
+    },
+    {
+      "destination": "Mumbai",
+      "price": 340000,
+      "desc": "Discover the vibrant culture of Mumbai, India"
+    },
+    {
+      "destination": "Barcelona",
+      "price": 320000,
+      "desc": "Indirect flights to the beautiful city of Barcelona"
+    },
+    {
+      "destination": "Amsterdam",
+      "price": 300000,
+      "desc": "Explore the picturesque canals of Amsterdam"
+    },
+    {
+      "destination": "Seoul",
+      "price": 420000,
+      "desc": "Indirect flights to the dynamic city of Seoul"
+    },
+    {
+      "destination": "Cancun",
+      "price": 480000,
+      "desc": "Discover the sunny beaches of Cancun, Mexico"
+    },
+    {
+      "destination": "Berlin",
+      "price": 340000,
+      "desc": "Indirect flights to the vibrant capital of Germany"
+    }
+  ]
 }
