@@ -3,122 +3,290 @@
     {
       "destination": "Almaty",
       "price": 100000,
-      "desc": " Direct flights to ALA",
-      "time": "4h 25m"
+      "desc": "Direct flights to ALA",
+      "time": "4h 25m",
+      "personalItem": "included",
+      "checkedBag": "included",
+      "carryOnBag": "extra fee"
     },
     {
       "destination": "Milan",
       "price": 280000,
       "desc": "Direct flights to Europe cities!",
-      "time": "5h 45m"
+      "time": "5h 45m",
+      "personalItem": "not avail.",
+      "checkedBag": "extra fee",
+      "carryOnBag": "included"
     },
     {
       "destination": "Paris",
       "price": 340000,
       "desc": "Direct flights to Europe cities!",
-      "time": "7h 15m"
+      "time": "7h 15m",
+      "personalItem": "included",
+      "checkedBag": "extra fee",
+      "carryOnBag": "not avail."
     },
     {
       "destination": "Astana",
       "price": 100000,
       "desc": "Direct flights to the capital of Kazakhstan",
-      "time": "3h 50m"
+      "time": "3h 50m",
+      "personalItem": "extra fee",
+      "checkedBag": "not avail.",
+      "carryOnBag": "included"
     },
     {
       "destination": "Shymkent",
       "price": 95000,
       "desc": "Other cities of beloved Kazakhstan",
-      "time": "6h 30m"
+      "time": "6h 30m",
+      "personalItem": "included",
+      "checkedBag": "extra fee",
+      "carryOnBag": "not avail."
     },
     {
       "destination": "Tokyo",
       "price": 320000,
       "desc": "Explore the vibrant city of Tokyo!",
-      "time": "8h 10m"
+      "time": "8h 10m",
+      "personalItem": "extra fee",
+      "checkedBag": "included",
+      "carryOnBag": "not avail."
     },
     {
       "destination": "New York",
       "price": 400000,
       "desc": "Direct flights to the Big Apple",
-      "time": "4h 45m"
+      "time": "4h 45m",
+      "personalItem": "included",
+      "checkedBag": "not avail.",
+      "carryOnBag": "extra fee"
     },
     {
       "destination": "London",
       "price": 380000,
       "desc": "Direct flights to Europe's iconic capital",
-      "time": "9h 5m"
+      "time": "9h 5m",
+      "personalItem": "extra fee",
+      "checkedBag": "not avail.",
+      "carryOnBag": "included"
     },
     {
       "destination": "Sydney",
       "price": 450000,
       "desc": "Discover the beauty of Sydney, Australia",
-      "time": "7h 55m"
+      "time": "7h 55m",
+      "personalItem": "not avail.",
+      "checkedBag": "included",
+      "carryOnBag": "extra fee"
     },
     {
       "destination": "Dubai",
       "price": 300000,
       "desc": "Direct flights to the dazzling city of Dubai",
-      "time": "5h 20m"
+      "time": "5h 20m",
+      "personalItem": "included",
+      "checkedBag": "extra fee",
+      "carryOnBag": "not avail."
     },
     {
       "destination": "Rio de Janeiro",
       "price": 500000,
       "desc": "Direct flights to the lively Brazilian city",
-      "time": "6h 40m"
+      "time": "6h 40m",
+      "personalItem": "extra fee",
+      "checkedBag": "not avail.",
+      "carryOnBag": "included"
     },
     {
       "destination": "Cape Town",
       "price": 420000,
       "desc": "Explore the scenic beauty of Cape Town",
-      "time": "8h 50m"
+      "time": "8h 50m",
+      "personalItem": "not avail.",
+      "checkedBag": "extra fee",
+      "carryOnBag": "included"
     },
     {
       "destination": "Beijing",
       "price": 280000,
       "desc": "Direct flights to the capital of China",
-      "time": "4h 10m"
+      "time": "4h 10m",
+      "personalItem": "extra fee",
+      "checkedBag": "not avail.",
+      "carryOnBag": "included"
     },
     {
       "destination": "Rome",
       "price": 360000,
       "desc": "Direct flights to the historic city of Rome",
-      "time": "6h 0m"
+      "time": "6h 0m",
+      "personalItem": "not avail.",
+      "checkedBag": "included",
+      "carryOnBag": "extra fee"
     },
     {
       "destination": "Mumbai",
       "price": 340000,
       "desc": "Discover the vibrant culture of Mumbai, India",
-      "time": "5h 30m"
+      "time": "5h 30m",
+      "personalItem": "included",
+      "checkedBag": "extra fee",
+      "carryOnBag": "not avail."
     },
     {
       "destination": "Barcelona",
       "price": 320000,
       "desc": "Direct flights to the beautiful city of Barcelona",
-      "time": "7h 20m"
+      "time": "7h 20m",
+      "personalItem": "extra fee",
+      "checkedBag": "not avail.",
+      "carryOnBag": "included"
     },
     {
       "destination": "Amsterdam",
       "price": 300000,
       "desc": "Explore the picturesque canals of Amsterdam",
-      "time": "3h 40m"
+      "time": "3h 40m",
+      "personalItem": "not avail.",
+      "checkedBag": "included",
+      "carryOnBag": "extra fee"
     },
     {
       "destination": "Seoul",
       "price": 420000,
       "desc": "Direct flights to the dynamic city of Seoul",
-      "time": "9h 15m"
+      "time": "9h 15m",
+      "personalItem": "included",
+      "checkedBag": "extra fee",
+      "carryOnBag": "not avail."
     },
     {
       "destination": "Cancun",
       "price": 480000,
       "desc": "Discover the sunny beaches of Cancun, Mexico",
-      "time": "4h 20m"
+      "time": "4h 20m",
+      "personalItem": "extra fee",
+      "checkedBag": "not avail.",
+      "carryOnBag": "included"
     },
     {
       "destination": "Berlin",
       "price": 340000,
       "desc": "Direct flights to the vibrant capital of Germany",
-      "time": "6h 55m"
+      "time": "6h 55m",
+      "personalItem": "not avail.",
+      "checkedBag": "included",
+      "carryOnBag": "extra fee"
+    },
+    {
+      "destination": "Moscow",
+      "price": 280000,
+      "desc": "Discover the historical charm of Moscow, Russia",
+      "time": "3h 25m",
+      "personalItem": "extra fee",
+      "checkedBag": "included",
+      "carryOnBag": "not avail."
+    },
+    {
+      "destination": "Lisbon",
+      "price": 320000,
+      "desc": "Direct flights to the picturesque city of Lisbon, Portugal",
+      "time": "7h 30m",
+      "personalItem": "not avail.",
+      "checkedBag": "extra fee",
+      "carryOnBag": "included"
+    },
+    {
+      "destination": "Toronto",
+      "price": 420000,
+      "desc": "Explore the vibrant culture of Toronto, Canada",
+      "time": "5h 40m",
+      "personalItem": "extra fee",
+      "checkedBag": "included",
+      "carryOnBag": "not avail."
+    },
+    {
+      "destination": "Buenos Aires",
+      "price": 470000,
+      "desc": "Direct flights to the lively city of Buenos Aires, Argentina",
+      "time": "9h 0m",
+      "personalItem": "not avail.",
+      "checkedBag": "extra fee",
+      "carryOnBag": "included"
+    },
+    {
+      "destination": "Bangkok",
+      "price": 350000,
+      "desc": "Discover the vibrant life of Bangkok, Thailand",
+      "time": "6h 15m",
+      "personalItem": "extra fee",
+      "checkedBag": "not avail.",
+      "carryOnBag": "included"
+    },
+    {
+      "destination": "Istanbul",
+      "price": 310000,
+      "desc": "Direct flights to the crossroads of Europe and Asia - Istanbul, Turkey",
+      "time": "4h 55m",
+      "personalItem": "not avail.",
+      "checkedBag": "included",
+      "carryOnBag": "extra fee"
+    },
+    {
+      "destination": "Prague",
+      "price": 330000,
+      "desc": "Explore the historic city of Prague, Czech Republic",
+      "time": "7h 5m",
+      "personalItem": "extra fee",
+      "checkedBag": "not avail.",
+      "carryOnBag": "included"
+    },
+    {
+      "destination": "Auckland",
+      "price": 480000,
+      "desc": "Discover the beauty of Auckland, New Zealand",
+      "time": "8h 25m",
+      "personalItem": "not avail.",
+      "checkedBag": "included",
+      "carryOnBag": "extra fee"
+    },
+    {
+      "destination": "Osaka",
+      "price": 370000,
+      "desc": "Explore the modern city of Osaka, Japan",
+      "time": "5h 55m",
+      "personalItem": "extra fee",
+      "checkedBag": "not avail.",
+      "carryOnBag": "included"
+    },
+    {
+      "destination": "Nairobi",
+      "price": 430000,
+      "desc": "Discover the wildlife in Nairobi, Kenya",
+      "time": "6h 25m",
+      "personalItem": "included",
+      "checkedBag": "extra fee",
+      "carryOnBag": "not avail."
+    },
+    {
+      "destination": "Hanoi",
+      "price": 360000,
+      "desc": "Explore the rich history of Hanoi, Vietnam",
+      "time": "4h 30m",
+      "personalItem": "extra fee",
+      "checkedBag": "not avail.",
+      "carryOnBag": "included"
+    },
+    {
+      "destination": "Madrid",
+      "price": 390000,
+      "desc": "Direct flights to the lively city of Madrid, Spain",
+      "time": "7h 35m",
+      "personalItem": "not avail.",
+      "checkedBag": "extra fee",
+      "carryOnBag": "included"
     }
   ]
 }

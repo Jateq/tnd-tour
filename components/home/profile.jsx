@@ -11,12 +11,14 @@ function Profile({ session }) {
     const { email, image } = session?.user || {};
 
     //Flights
+    const flightsDestination = localStorage.getItem('flightsDestination');
+    const flightsPrice = localStorage.getItem('flightsPrice');
     const storedFlightsCity = localStorage.getItem('flightsCity');
     // const storedFlightsTo = localStorage.getItem('flightsTo');
     const storedFlightsDeparture = localStorage.getItem('flightsDeparture');
     const storedFlightsReturn = localStorage.getItem('flightsReturn');
     const storedFlightPassengers = localStorage.getItem('flightsPassengers');
-    console.log(storedFlightsCity, storedFlightsDeparture, storedFlightsReturn, storedFlightPassengers);
+    console.log( storedFlightsCity, storedFlightsDeparture, storedFlightsReturn, storedFlightPassengers);
 
 
     // Stays
@@ -164,9 +166,10 @@ function Profile({ session }) {
             <div>Your Flights</div>
             <div className='profile-stay-block'>
                 <p>You have reserved flight from</p>
-                <p>{storedFlightsCity} to </p>
+                <p>{storedFlightsCity} to {flightsDestination}</p>
                 <p>for {storedFlightPassengers} passenger/s</p>
                 <p>from {storedFlightsDeparture} till {storedFlightsReturn}</p>
+                <p>for KZT {flightsPrice}</p>
             </div>
         </div>
     ), []);
@@ -202,13 +205,13 @@ function Profile({ session }) {
                             <div onClick={() => handleNavClick('edit')}>
                                 Edit profile
                             </div>
-
-                        <div onClick={() => handleNavClick('stays')}>
-                            Your stays
-                        </div>
                         <div onClick={() => handleNavClick('flights')}>
                             Your flights
                         </div>
+                        <div onClick={() => handleNavClick('stays')}>
+                            Your stays
+                        </div>
+
                         <div onClick={() => handleNavClick('membership')}>
                             Your membership
                         </div>

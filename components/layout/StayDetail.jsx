@@ -9,9 +9,6 @@ const StayDetail = ({ stay }) => {
         setShowModal(true);
     };
 
-    const closeModal = () => {
-        setShowModal(false);
-    };
     return (
         <div className='stay-detail'>
             <h2>{stay.hotel}</h2>

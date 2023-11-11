@@ -4,16 +4,30 @@ import sliderFlightsData from "mockapi/flights.json";
 import Link from "next/link";
 import './Slider.css';
 import {useEffect, useState} from "react";
+import FlightsModal from "@/components/layout/flights-modal";
 
 
 
 
 export default function SliderFlights() {
+    const [showModal, setShowModal] = useState(false);
+    const [selectedFlight, setSelectedFlight] = useState(null);
 
+        const openModal = (flight) => {
+            setSelectedFlight(flight);
+            setShowModal(true);
+        };
     const [flightsCity, setFlightsCity] = useState("");
     const [flightsDeparture, setFlightsDeparture] = useState("");
     const [flightsReturn, setFlightsReturn] = useState("");
     const [flightsPassengers, setFlightsPassengers] = useState(0);
+
+    const [sortAscending, setSortAscending] = useState(false);
+    const [sortDescending, setSortDescending] = useState(false);
+    const [sortAny, setSortAny] = useState(true)
+    const [selectedPersonalItem, setSelectedPersonalItem] = useState(null);
+    const [filterCheckedBag, setFilterCheckedBag] = useState(null);
+    const [filterCarryOnBag, setFilterCarryOnBag] = useState(null);
 
     useEffect(() => {
         const storedFlightsCity = localStorage.getItem('flightsCity');
@@ -39,23 +53,56 @@ export default function SliderFlights() {
         localStorage.setItem('flightsReturn', value);
     }
 
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const filteredFlights = sliderFlightsData.flightsData.filter(flight =>
+        flight.destination.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const sortFlights = (flights) => {
+        if (sortAscending) {
+            return flights.slice().sort((a, b) => a.price - b.price);
+        } else if (sortDescending) {
+            return flights.slice().sort((a, b) => b.price - a.price);
+        } else if (sortAny){
+            return flights;
+        } else{
+            return flights;
+        }
+    };
+
+    const filterFlights = (flights) => {
+        return flights.filter((flight) => {
+            const personalItemMatch = selectedPersonalItem ? flight.personalItem === selectedPersonalItem : true;
+            const checkedBagMatch = filterCheckedBag ? flight.checkedBag === filterCheckedBag : true;
+            const carryOnBagMatch = filterCarryOnBag ? flight.carryOnBag === filterCarryOnBag : true;
+
+            return personalItemMatch && checkedBagMatch && carryOnBagMatch;
+        });
+    };
+
+    const sortedAndFilteredFlights = filterFlights(sortFlights(filteredFlights));
+
     return (
         <div className='main-flights-page'>
 
             <header>
-                <div>
+                <div className='departure-city'>
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path  fill='gray' d="M120-120v-80h720v80H120Zm74-200L80-514l62-12 70 62 192-52-162-274 78-24 274 246 200-54q32-9 58 12t26 56q0 22-13.5 39T830-492L194-320Z"/></svg>
-                    {flightsCity}</div>
+                    {flightsCity}
+                </div>
                 <div> <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill='gray' d="m700-300-57-56 84-84H120v-80h607l-83-84 57-56 179 180-180 180Z"/></svg> </div>
                 <div className='search'>
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill='gray' d="M754-324 120-500v-220l60 20 28 84 192 54v-318l80 20 110 350 200 56q23 6 36.5 24.5T840-388q0 33-27 53t-59 11ZM120-120v-80h720v80H120Z"/></svg>
-                    <input placeholder='Where to?'/>
+                    <input value={searchTerm}
+                           onChange={(e) => setSearchTerm(e.target.value)}
+                           placeholder='Where to?'/>
                 </div>
 
                 <div className='date'>
-                    <input type="date" value={flightsDeparture} onChange={handleFlightsDepartureChange}/>
+                    <input className='ml-2' type="date" value={flightsDeparture} onChange={handleFlightsDepartureChange}/>
                     <p> - </p>
-                    <input type="date" value={flightsReturn} onChange={handleFlightsReturnChange}/>
+                    <input className='mr-2' type="date" value={flightsReturn} onChange={handleFlightsReturnChange}/>
                 </div>
 
 
@@ -66,14 +113,196 @@ export default function SliderFlights() {
 
             <div className='flights-content'>
                 <div className='filters'>
-                    <h2>Filters</h2>
+                        <h2>Filters:</h2>
+                    <p className='text-[15px] text-gray-500 mt-2'>Showing {sortedAndFilteredFlights.length} results</p>
+
+                    <h3 className='mb-2'>Filter by Price:</h3>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="any"
+                            name="priceSort"
+                            checked={sortAny}
+                            onChange={() => {
+                                setSortAny(!sortAny)
+                                setSortDescending(false);
+                                setSortAscending(false);
+
+                            }}
+                        />
+                        <label htmlFor="any" className='ml-2'>Any</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="ascending"
+                            name="priceSort"
+                            checked={sortAscending}
+                            onChange={() => {
+                                setSortAscending(!sortAscending);
+                                setSortDescending(false);
+                                setSortAny(false);
+
+                            }}
+                        />
+                        <label htmlFor="ascending" className='ml-2'>Ascending</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="descending"
+                            name="priceSort"
+                            checked={sortDescending}
+                            onChange={() => {
+                                setSortDescending(!sortDescending);
+                                setSortAscending(false);
+                                setSortAny(false);
+
+                            }}
+                        />
+                        <label htmlFor="descending" className='ml-2'>Descending</label>
+                    </div>
+
+                    <h3>Filter by Personal Item:</h3>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="personalItemAny"
+                            name="personalItemFilter"
+                            checked={selectedPersonalItem === null}
+                            onChange={() => setSelectedPersonalItem(null)}
+                        />
+                        <label htmlFor="personalItemAny" className='ml-2'>Any</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="personalItemIncluded"
+                            name="personalItemFilter"
+                            checked={selectedPersonalItem === 'included'}
+                            onChange={() => setSelectedPersonalItem('included')}
+                        />
+                        <label htmlFor="personalItemIncluded" className='ml-2'>Included</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="personalItemExtraFee"
+                            name="personalItemFilter"
+                            checked={selectedPersonalItem === 'extra fee'}
+                            onChange={() => setSelectedPersonalItem('extra fee')}
+                        />
+                        <label htmlFor="personalItemExtraFee" className='ml-2'>Extra fee</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="personalItemNotAvail"
+                            name="personalItemFilter"
+                            checked={selectedPersonalItem === 'not avail.'}
+                            onChange={() => setSelectedPersonalItem('not avail.')}
+                        />
+                        <label htmlFor="personalItemNotAvail" className='ml-2'>Not avail.</label>
+                    </div>
+
+                    <h3>Filter by Carry On Bag:</h3>
+                <div>
+                    <input
+                        type="checkbox"
+                        id="carryOnBagAny"
+                        name="carryOnBagFilter"
+                        checked={filterCarryOnBag === null}
+                        onChange={() => setFilterCarryOnBag(null)}
+                    />
+                    <label htmlFor="carryOnBagAny" className='ml-2'>Any</label>
+                </div>
+                <div>
+                    <input
+                        type="checkbox"
+                        id="carryOnBagIncluded"
+                        name="carryOnBagFilter"
+                        checked={filterCarryOnBag === 'included'}
+                        onChange={() => setFilterCarryOnBag('included')}
+                    />
+                    <label htmlFor="carryOnBagIncluded" className='ml-2'>Included</label>
+                </div>
+                <div>
+                    <input
+                        type="checkbox"
+                        id="carryOnBagExtraFee"
+                        name="carryOnBagFilter"
+                        checked={filterCarryOnBag === 'extra fee'}
+                        onChange={() => setFilterCarryOnBag('extra fee')}
+                    />
+                    <label htmlFor="carryOnBagExtraFee" className='ml-2'>Extra fee</label>
+                </div>
+                <div>
+                    <input
+                        type="checkbox"
+                        id="carryOnBagNotAvail"
+                        name="carryOnBagFilter"
+                        checked={filterCarryOnBag === 'not avail.'}
+                        onChange={() => setFilterCarryOnBag('not avail.')}
+                    />
+                    <label htmlFor="carryOnBagNotAvail" className='ml-2'>Not avail.</label>
+                </div>
+
+
+
+
+
+                <h3>Filter by Checked Bag:</h3>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="checkedBagAny"
+                            name="checkedBagFilter"
+                            checked={filterCheckedBag === null}
+                            onChange={() => setFilterCheckedBag(null)}
+                        />
+                        <label htmlFor="checkedBagIncluded" className='ml-2'>Any</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="checkedBagIncluded"
+                            name="checkedBagFilter"
+                            checked={filterCheckedBag === 'included'}
+                            onChange={() => setFilterCheckedBag('included')}
+                        />
+                        <label htmlFor="checkedBagIncluded" className='ml-2'>Included</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="checkedBagExtraFee"
+                            name="checkedBagFilter"
+                            checked={filterCheckedBag === 'extra fee'}
+                            onChange={() => setFilterCheckedBag('extra fee')}
+                        />
+                        <label htmlFor="checkedBagNotAvail" className='ml-2'>Extra fee</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="checkedBagNotAvail"
+                            name="checkedBagFilter"
+                            checked={filterCheckedBag === 'not avail.'}
+                            onChange={() => setFilterCheckedBag('not avail.')}
+                        />
+                        <label htmlFor="checkedBagNotAvail" className='ml-2'>Not avail.</label>
+                    </div>
+
 
                 </div>
 
-                <div className='flights-slider-container'>
+
+            <div className='flights-slider-container'>
                     <div className='flights-slider-left'>
-                        {sliderFlightsData.flightsData.map((flight) => (
+                        {sortedAndFilteredFlights.length > 0 ? (
+                            sortedAndFilteredFlights.map((flight) => (
                             <div key={flight.destination} className='flights-card'>
+
                                 <div className='flights-card-info'>
                                     <div className='mt-[5px]'>
                                         <h2>{flightsCity}</h2>
@@ -97,7 +326,6 @@ export default function SliderFlights() {
                                         <h2>{flightsCity}</h2>
                                     </div>
                                 <p className='text-xs pl-4'>{flight.desc} with TND Fly</p>
-                                {/* Add additional flight information rendering as needed */}
 
                                 </div>
 
@@ -111,8 +339,21 @@ export default function SliderFlights() {
                                             </svg>
                                             <span>Personal item</span>
                                         </p>
-                                        <p className='text-green-600'>
-                                            included
+                                        <p className={flight.personalItem === 'included' ? 'text-green-600' : (flight.personalItem === 'not avail.' ? 'text-red-600' : '')}>
+                                            {flight.personalItem}
+                                        </p>
+                                    </div>
+                                    <div className='extra-fee-block'>
+                                        <p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="20"
+                                                 viewBox="0 -960 960 960" width="24">
+                                                <path
+                                                    d="M360-200v-400h-40v400h40Zm108 80H320q-33 0-56.5-23.5T240-200v-400q0-33 23.5-56.5T320-680h240v-120q-33 0-56.5-23.5T480-880h160v372q-24 8-41.5 16T560-470v-130H440v400h4q3 24 9 42t15 38Zm252-320q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440Zm0 320q11 0 18.5-7.5T746-146q0-11-7.5-18.5T720-172q-11 0-18.5 7.5T694-146q0 11 7.5 18.5T720-120Zm-18-76h36v-10q0-11 6-19.5t14-16.5q14-12 22-23t8-31q0-29-19-46.5T720-360q-23 0-41.5 13.5T652-310l32 14q3-12 12.5-21t23.5-9q15 0 23.5 7.5T752-296q0 11-6 18.5T732-262q-6 6-12.5 12T708-236q-3 6-4.5 12t-1.5 14v14ZM400-400Zm-40 200v-400 400Zm80 0v-400 400Z"/>
+                                            </svg>
+                                            <span>Carry on bag</span>
+                                        </p>
+                                        <p className={flight.carryOnBag === 'included' ? 'text-green-600' : (flight.carryOnBag === 'not avail.' ? 'text-red-600' : '')}>
+                                            {flight.carryOnBag}
                                         </p>
                                     </div>
                                     <div className='extra-fee-block'>
@@ -125,23 +366,11 @@ export default function SliderFlights() {
                                             <span>Checked bag</span>
                                         </p>
 
-                                        <p className='text-green-600'>
-                                            included
+                                        <p className={flight.checkedBag === 'included' ? 'text-green-600' : (flight.checkedBag === 'not avail.' ? 'text-red-600' : '')}>
+                                            {flight.checkedBag}
                                         </p>
                                     </div>
-                                    <div className='extra-fee-block'>
-                                        <p>
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="20"
-                                                 viewBox="0 -960 960 960" width="24">
-                                                <path
-                                                    d="M360-200v-400h-40v400h40Zm108 80H320q-33 0-56.5-23.5T240-200v-400q0-33 23.5-56.5T320-680h240v-120q-33 0-56.5-23.5T480-880h160v372q-24 8-41.5 16T560-470v-130H440v400h4q3 24 9 42t15 38Zm252-320q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440Zm0 320q11 0 18.5-7.5T746-146q0-11-7.5-18.5T720-172q-11 0-18.5 7.5T694-146q0 11 7.5 18.5T720-120Zm-18-76h36v-10q0-11 6-19.5t14-16.5q14-12 22-23t8-31q0-29-19-46.5T720-360q-23 0-41.5 13.5T652-310l32 14q3-12 12.5-21t23.5-9q15 0 23.5 7.5T752-296q0 11-6 18.5T732-262q-6 6-12.5 12T708-236q-3 6-4.5 12t-1.5 14v14ZM400-400Zm-40 200v-400 400Zm80 0v-400 400Z"/>
-                                            </svg>
-                                            <span>Carry on bag</span>
-                                        </p>
-                                        <p>
-                                            extra fee
-                                        </p>
-                                    </div>
+
 
                                     <div className='clickable-block'>
                                         <div>
@@ -149,15 +378,20 @@ export default function SliderFlights() {
                                             <p>{`KZT ${flight.price}`}</p>
                                         </div>
 
-                                    <Link href={`/flights/${flight.destination}`}>
-                                        <button>View details</button>
-                                    </Link>
+                                        <button onClick={() => openModal(flight)}>View details</button>
                                 </div>
 
                                 </div>
 
                             </div>
-                        ))}
+
+                        ))) : (
+                            <div className='flights-slider-container'>
+                                <div className='no-flights-card'>
+                                    <p>We do not perform flights to that city yet</p>
+                                </div>
+                            </div>
+                            )}
 
                     </div>
                 </div>
@@ -165,6 +399,7 @@ export default function SliderFlights() {
 
             </div>
 
+            <FlightsModal showModal={showModal} setShowModal={setShowModal} flight={selectedFlight}/>
 
         </div>
     );
