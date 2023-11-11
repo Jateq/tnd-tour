@@ -3,102 +3,122 @@
     {
       "destination": "Almaty",
       "price": 100000,
-      "desc": "Direct flights to ALA"
+      "desc": " Direct flights to ALA",
+      "time": "4h 25m"
     },
     {
       "destination": "Milan",
       "price": 280000,
-      "desc": "Indirect flights to Europe cities!"
+      "desc": "Direct flights to Europe cities!",
+      "time": "5h 45m"
     },
     {
       "destination": "Paris",
       "price": 340000,
-      "desc": "Indirect flights to Europe cities!"
+      "desc": "Direct flights to Europe cities!",
+      "time": "7h 15m"
     },
     {
       "destination": "Astana",
       "price": 100000,
-      "desc": "Direct flights to the capital of Kazakhstan"
+      "desc": "Direct flights to the capital of Kazakhstan",
+      "time": "3h 50m"
     },
     {
       "destination": "Shymkent",
       "price": 95000,
-      "desc": "Other cities of beloved Kazakhstan"
+      "desc": "Other cities of beloved Kazakhstan",
+      "time": "6h 30m"
     },
     {
       "destination": "Tokyo",
       "price": 320000,
-      "desc": "Explore the vibrant city of Tokyo!"
+      "desc": "Explore the vibrant city of Tokyo!",
+      "time": "8h 10m"
     },
     {
       "destination": "New York",
       "price": 400000,
-      "desc": "Indirect flights to the Big Apple"
+      "desc": "Direct flights to the Big Apple",
+      "time": "4h 45m"
     },
     {
       "destination": "London",
       "price": 380000,
-      "desc": "Indirect flights to Europe's iconic capital"
+      "desc": "Direct flights to Europe's iconic capital",
+      "time": "9h 5m"
     },
     {
       "destination": "Sydney",
       "price": 450000,
-      "desc": "Discover the beauty of Sydney, Australia"
+      "desc": "Discover the beauty of Sydney, Australia",
+      "time": "7h 55m"
     },
     {
       "destination": "Dubai",
       "price": 300000,
-      "desc": "Direct flights to the dazzling city of Dubai"
+      "desc": "Direct flights to the dazzling city of Dubai",
+      "time": "5h 20m"
     },
     {
       "destination": "Rio de Janeiro",
       "price": 500000,
-      "desc": "Indirect flights to the lively Brazilian city"
+      "desc": "Direct flights to the lively Brazilian city",
+      "time": "6h 40m"
     },
     {
       "destination": "Cape Town",
       "price": 420000,
-      "desc": "Explore the scenic beauty of Cape Town"
+      "desc": "Explore the scenic beauty of Cape Town",
+      "time": "8h 50m"
     },
     {
       "destination": "Beijing",
       "price": 280000,
-      "desc": "Direct flights to the capital of China"
+      "desc": "Direct flights to the capital of China",
+      "time": "4h 10m"
     },
     {
       "destination": "Rome",
       "price": 360000,
-      "desc": "Indirect flights to the historic city of Rome"
+      "desc": "Direct flights to the historic city of Rome",
+      "time": "6h 0m"
     },
     {
       "destination": "Mumbai",
       "price": 340000,
-      "desc": "Discover the vibrant culture of Mumbai, India"
+      "desc": "Discover the vibrant culture of Mumbai, India",
+      "time": "5h 30m"
     },
     {
       "destination": "Barcelona",
       "price": 320000,
-      "desc": "Indirect flights to the beautiful city of Barcelona"
+      "desc": "Direct flights to the beautiful city of Barcelona",
+      "time": "7h 20m"
     },
     {
       "destination": "Amsterdam",
       "price": 300000,
-      "desc": "Explore the picturesque canals of Amsterdam"
+      "desc": "Explore the picturesque canals of Amsterdam",
+      "time": "3h 40m"
     },
     {
       "destination": "Seoul",
       "price": 420000,
-      "desc": "Indirect flights to the dynamic city of Seoul"
+      "desc": "Direct flights to the dynamic city of Seoul",
+      "time": "9h 15m"
     },
     {
       "destination": "Cancun",
       "price": 480000,
-      "desc": "Discover the sunny beaches of Cancun, Mexico"
+      "desc": "Discover the sunny beaches of Cancun, Mexico",
+      "time": "4h 20m"
     },
     {
       "destination": "Berlin",
       "price": 340000,
-      "desc": "Indirect flights to the vibrant capital of Germany"
+      "desc": "Direct flights to the vibrant capital of Germany",
+      "time": "6h 55m"
     }
   ]
 }
