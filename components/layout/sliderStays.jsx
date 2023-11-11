@@ -5,7 +5,7 @@ import sliderStaysData from "mockapi/stays.json";
 import './Slider.css';
 import Link from "next/link"; // Import your CSS file
 
-export default function Slider() {
+export default function SliderStays() {
     const [sliderValue, setSliderValue] = useState(sliderStaysData.staysData);
 
     const getStayById = (id) => {
