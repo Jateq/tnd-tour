@@ -1,8 +1,8 @@
 import Balancer from "react-wrap-balancer";
-
-export default async function Membership() {
+import Membership from "@/components/layout/membership";
+export default function MembershipPage() {
 
     return (
-        <Balancer>Members</Balancer>
+        <Membership/>
     );
 }
