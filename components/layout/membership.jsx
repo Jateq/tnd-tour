@@ -1,4 +1,5 @@
 import React from "react"
+import Link from "next/link";
 export default function Membership() {
 
     return(
@@ -14,9 +15,9 @@ export default function Membership() {
                         <div className="card__price">
                             <span>Price:</span>
                             <div className="membership__price">
-                               KZT 300K/ year
+                               Your current
                             </div>
-                            <button>Subscribe</button>
+                            <button>Subscribed</button>
                         </div>
                         
                     </div>
@@ -29,7 +30,7 @@ export default function Membership() {
                         <div className="card__price">
                             <span>Price:</span>
                             <div className="membership__price">
-                                KZT 500K/ year
+                                KZT 100K/ year
                             </div>
                             <button>Subscribe</button>
                         </div>
@@ -44,9 +45,11 @@ export default function Membership() {
                         <div className="card__price">
                             <span>Price:</span>
                             <div className="membership__price">
-                                KZT 1KK/ year
+                                KZT 400K/ year
                             </div>
-                            <button>Subscribe</button>
+                            <Link href="/membership/pay">
+                                <button>Subscribe</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

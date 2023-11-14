@@ -141,6 +141,23 @@
     width: 150px;
 }
 
+#basic button{
+    font-size: 12px;
+    color: #ffffff;
+    background-color: #565656;
+    border-radius: 5px;
+    border: solid 1px #ffffff;
+    padding: 10px;
+    transition: 0.3s;
+    width: 150px;
+    cursor: not-allowed;
+}
+
+#basic button:hover{
+    background-color: #949494;
+}
+
+
 #premium button{
     background-color: rgb(194, 182, 113);;
 }
@@ -155,4 +172,21 @@
     border: solid 1px rgb(194, 182, 113);
     color: rgb(194, 182, 113);
     background-color: white;
+}
+
+
+/*==================Payment=======================*/
+
+.payment{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.payment-left{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    border: solid 1px black;
+    flex-direction: column;
 }
