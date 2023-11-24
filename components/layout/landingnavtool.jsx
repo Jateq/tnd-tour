@@ -12,6 +12,18 @@ export default function LandingNavTool() {
     const [flightsReturn, setFlightsReturn] = useState('')
     const [flightsPassengers, setFlightsPassengers] = useState(0)
 
+    const areFlightsInputsFilled = () => {
+        return flightsCity && flightsDeparture && flightsReturn && flightsPassengers;
+    };
+
+    const handleContinueClick = () => {
+        if (!areFlightsInputsFilled()) {
+            alert("Please fill in all the required fields before continuing.");
+        } else {
+            window.location.href = "/flights";
+        }
+    };
+
     function handleFlightsCityChange(event) {
         const value = event.target.value;
         setFlightsCity(value);
@@ -41,12 +53,14 @@ export default function LandingNavTool() {
 
     // For stays
     const [adults, setAdults] = useState(1);
-    const [children, setChildren] = useState(0);
+    const [children, setChildren] = useState();
     const [departureDate, setDepartureDate] = useState('');
     const [returnDate, setReturnDate] = useState('');
     function handleAdultsChange(event) {
         const value = parseInt(event.target.value, 10);
         setAdults(value);
+        setChildren(0);
+        localStorage.setItem('children', 0);
         localStorage.setItem('adults', value);
     }
     function handleChildrenChange(event) {
@@ -65,7 +79,54 @@ export default function LandingNavTool() {
         localStorage.setItem('returnDate', value);
     }
 
+    const areStaysInputsFilled = () => {
+        return adults && departureDate && returnDate;
+    };
 
+    const handleStaysContinueClick = () => {
+        if (!areStaysInputsFilled()) {
+            alert("Please fill in all the required fields before continuing.");
+        } else {
+            window.location.href = "/stays";
+        }
+    };
+
+
+
+    // For membership
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+
+    function handleEmailChange(event) {
+        const value = event.target.value;
+        setEmail(value);
+        localStorage.setItem('email', value);
+    }
+
+    function handleNameChange(event) {
+        const value = event.target.value;
+        setName(value);
+        localStorage.setItem('name', value);
+    }
+
+    function handleSurnameChange(event) {
+        const value = event.target.value;
+        setSurname(value);
+        localStorage.setItem('surname', value);
+    }
+
+    const areMembershipInputsFilled = () => {
+        return email && name && surname;
+    };
+
+    const handleMembershipContinueClick = () => {
+        if (!areMembershipInputsFilled()) {
+            alert("Please fill in all the required fields before continuing.");
+        } else {
+            window.location.href = "/membership";
+        }
+    };
 
 
     const handleTabClick = (tabName) => {
@@ -139,8 +200,12 @@ export default function LandingNavTool() {
                                 </div>
                                 <div className='w-1/4'>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">&nbsp;</label>
-                                    <Link href="/flights"> <button className="flex bg-cyan-500 hover:bg-stone-600 text-white font-bold ml-auto justify-center w-[170px] py-2 px-4 rounded-md transition-[0.3s]">
-                                        Continue
+                                    <Link href={areFlightsInputsFilled() ? "/flights" : "#"}>
+                                        <button
+                                            className="flex bg-cyan-500 hover:bg-stone-600 text-white font-bold ml-auto justify-center w-[170px] py-2 px-4 rounded-md transition-[0.3s]"
+                                            onClick={handleContinueClick}
+                                        >
+                                            Continue
                                         </button>
                                     </Link>
                                 </div>
@@ -178,9 +243,7 @@ export default function LandingNavTool() {
                                         required
                                         type="number"
                                         id="children"
-                                        min="0"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
-
                                         value={children}
                                         onChange={handleChildrenChange}
                                     />
@@ -215,115 +278,20 @@ export default function LandingNavTool() {
                                 </div>
                                 <div className='w-1/3'>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">&nbsp;</label>
-                                    <Link href="/stays"><button className=" flex bg-cyan-500 hover:bg-stone-600 text-white font-bold ml-auto justify-center w-[170px] py-2 px-4 rounded-md transition-[0.3s]">
-                                        Continue
-                                    </button></Link>
+                                    <Link href={areStaysInputsFilled() ? "/stays" : "#"}>
+                                        <button
+                                            className="flex bg-cyan-500 hover:bg-stone-600 text-white font-bold ml-auto justify-center w-[170px] py-2 px-4 rounded-md transition-[0.3s]"
+                                            onClick={handleStaysContinueClick}
+                                        >
+                                            Continue
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
-
-
-                    {/*Tours*/}
-
-
-                    <div className={`tab_pane ${activeTab === 'Tours' ? 'active' : ''}`} id="tours">
-                        <div className="tab_container">
-                            <div className="flex justify-between mb-4">
-                                <div className="w-1/2">
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Destination</label>
-                                    <input
-                                        required
-                                        type="text"
-                                        className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="Going to"
-                                    />
-                                </div>
-                                <div className="w-1/2">
-                                    <div className='flex'>
-                                        <div className='w-1/2'>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">Cabin</label>
-                                            <input
-                                                required
-                                                type="number"
-                                                min="0"
-                                                className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
-                                            />
-                                        </div>
-                                        <div className='w-1/2'><label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="adults">Adults:</label>
-                                            <input
-                                                required
-                                                type="number"
-                                                id="adults"
-                                                min="1"
-                                                value={adults}
-                                                className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
-
-                                                onChange={handleAdultsChange}
-                                            />
-                                        </div>
-                                        <div className='w-1/2'>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="children">Children:</label>
-                                            <input
-                                                required
-                                                type="number"
-                                                id="children"
-                                                min="0"
-                                                className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
-
-                                                value={children}
-                                                onChange={handleChildrenChange}
-                                            />
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                            <div className="flex  mb-4">
-                                <div className="w-1/3">
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Transportation</label>
-                                    <select
-                                        className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
-                                        name="transportation"
-                                        id="transportation"
-                                    >
-                                        <option value="cruise">Cruise</option>
-                                        <option value="car">Car</option>
-                                        <option value="bus">Bus</option>
-                                        <option value="plane">Plane</option>
-                                    </select>
-                                </div>
-                                <div className="w-1/3">
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Duration</label>
-                                    <div className="flex justify-between">
-                                        <input
-                                            required
-                                            type="number"
-                                            placeholder="min nights"
-                                            className="block w-1/2 py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
-                                        />
-                                        <input
-                                            required
-                                            type="number"
-                                            placeholder="max nights"
-                                            className="block w-1/2 py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
-                                        />
-                                    </div>
-                                </div>
-
-
-                                <div className='w-1/3'>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">&nbsp;</label>
-                                    <Link href="/tours"><button className=" flex bg-cyan-500 hover:bg-stone-600 text-white font-bold ml-auto justify-center w-[170px] py-2 px-4 rounded-md transition-[0.3s]">
-                                        Continue
-                                    </button></Link></div>
-                            </div>
-                        </div>
-                    </div>
 
 
 
@@ -340,6 +308,8 @@ export default function LandingNavTool() {
                                         type="email"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         placeholder="Your Email"
+                                        value={email}
+                                        onChange={handleEmailChange}
                                     />
                                 </div>
 
@@ -351,6 +321,8 @@ export default function LandingNavTool() {
                                         type="text"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         placeholder="Your Name"
+                                        value={name}
+                                        onChange={handleNameChange}
                                     />
                                     </div>
                                     <div className='w-1/2'>
@@ -360,6 +332,8 @@ export default function LandingNavTool() {
                                             type="text"
                                             className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                             placeholder="Your Surname"
+                                            value={surname}
+                                            onChange={handleSurnameChange}
                                         />
                                     </div>
                                 </div>
@@ -374,9 +348,16 @@ export default function LandingNavTool() {
                                 </div>
                                 <div className='w-1/2'>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">&nbsp;</label>
-                                    <Link href="/membership"> <button className=" flex bg-cyan-500 hover:bg-stone-600 text-white font-bold ml-auto justify-center w-[170px] py-2 px-4 rounded-md transition-[0.3s]">
-                                        Continue
-                                    </button></Link></div>
+                                    <Link href={areMembershipInputsFilled() ? "/membership" : "#"}>
+                                        <button
+                                            className="flex bg-cyan-500 hover:bg-stone-600 text-white font-bold ml-auto justify-center w-[170px] py-2 px-4 rounded-md transition-[0.3s]"
+                                            onClick={handleMembershipContinueClick}
+                                        >
+                                            Continue
+                                        </button>
+                                    </Link>
+
+                                </div>
                             </div>
 
                         </div>
