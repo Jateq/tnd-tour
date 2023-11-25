@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
 
-export default function Landingnavtool() {
+export default function LandingNavTool() {
+
     const [activeTab, setActiveTab] = useState('Flights');
     const [inputValue, setInputValue] = useState('');
 
@@ -78,7 +79,6 @@ export default function Landingnavtool() {
                     <ul className="tab_list">
                         <li className={`tab ${activeTab === 'Flights' ? 'active' : ''}`} onClick={() => handleTabClick('Flights')}>Flights</li>
                         <li className={`tab ${activeTab === 'Stays' ? 'active' : ''}`} onClick={() => handleTabClick('Stays')}>Stays</li>
-                        <li className={`tab ${activeTab === 'Tours' ? 'active' : ''}`} onClick={() => handleTabClick('Tours')}>Tours</li>
                         <li className={`tab ${activeTab === 'Membership' ? 'active' : ''}`} onClick={() => handleTabClick('Membership')}>Membership</li>
                     </ul>
                 </div>
@@ -95,6 +95,7 @@ export default function Landingnavtool() {
                                 <div className="w-full">
                                     <label className="block text-sm font-medium text-gray-700 mb-2">From</label>
                                     <input
+                                        required
                                         type="text"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         placeholder="Departure city"
@@ -108,6 +109,7 @@ export default function Landingnavtool() {
                                 <div className="w-1/4">
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Departure</label>
                                     <input
+                                        required
                                         type="date"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         value={flightsDeparture}
@@ -117,6 +119,7 @@ export default function Landingnavtool() {
                                 <div className="w-1/4">
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Return</label>
                                     <input
+                                        required
                                         type="date"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         value={flightsReturn}
@@ -126,6 +129,7 @@ export default function Landingnavtool() {
                                 <div className="w-1/4">
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Passengers</label>
                                     <input
+                                        required
                                         type="number"
                                         min="1"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
@@ -158,6 +162,7 @@ export default function Landingnavtool() {
                                     <div className='flex'>
                                     <div className='w-1/2'><label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="adults">Adults:</label>
                                     <input
+                                        required
                                         type="number"
                                         id="adults"
                                         min="1"
@@ -170,6 +175,7 @@ export default function Landingnavtool() {
                                     <div className='w-1/2'>
                                     <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="children">Children:</label>
                                     <input
+                                        required
                                         type="number"
                                         id="children"
                                         min="0"
@@ -189,6 +195,7 @@ export default function Landingnavtool() {
                                 <div className="w-1/3">
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Departure</label>
                                     <input
+                                        required
                                         type="date"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         value={departureDate}
@@ -198,6 +205,7 @@ export default function Landingnavtool() {
                                 <div className="w-1/3">
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Return</label>
                                     <input
+                                        required
                                         type="date"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         value={returnDate}
@@ -227,6 +235,7 @@ export default function Landingnavtool() {
                                 <div className="w-1/2">
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Destination</label>
                                     <input
+                                        required
                                         type="text"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         placeholder="Going to"
@@ -237,6 +246,7 @@ export default function Landingnavtool() {
                                         <div className='w-1/2'>
                                             <label className="block text-sm font-medium text-gray-700 mb-2">Cabin</label>
                                             <input
+                                                required
                                                 type="number"
                                                 min="0"
                                                 className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
@@ -244,6 +254,7 @@ export default function Landingnavtool() {
                                         </div>
                                         <div className='w-1/2'><label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="adults">Adults:</label>
                                             <input
+                                                required
                                                 type="number"
                                                 id="adults"
                                                 min="1"
@@ -256,6 +267,7 @@ export default function Landingnavtool() {
                                         <div className='w-1/2'>
                                             <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="children">Children:</label>
                                             <input
+                                                required
                                                 type="number"
                                                 id="children"
                                                 min="0"
@@ -289,11 +301,13 @@ export default function Landingnavtool() {
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Duration</label>
                                     <div className="flex justify-between">
                                         <input
+                                            required
                                             type="number"
                                             placeholder="min nights"
                                             className="block w-1/2 py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         />
                                         <input
+                                            required
                                             type="number"
                                             placeholder="max nights"
                                             className="block w-1/2 py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
@@ -322,6 +336,7 @@ export default function Landingnavtool() {
                                 <div className="w-1/2">
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                                     <input
+                                        required
                                         type="email"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         placeholder="Your Email"
@@ -332,6 +347,7 @@ export default function Landingnavtool() {
                                     <div className='w-1/2'>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
                                     <input
+                                        required
                                         type="text"
                                         className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                         placeholder="Your Name"
@@ -340,6 +356,7 @@ export default function Landingnavtool() {
                                     <div className='w-1/2'>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">Surname</label>
                                         <input
+                                            required
                                             type="text"
                                             className="block w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-500 focus:border-blue-500"
                                             placeholder="Your Surname"

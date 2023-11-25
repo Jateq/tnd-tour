@@ -5,6 +5,7 @@ import cx from "classnames";
 import { sfPro, inter } from "./fonts";
 import Nav from "@/components/layout/nav";
 import { Suspense } from "react";
+import { MembershipProvider } from "@/components/layout/MembershipContext";
 
 export const metadata = {
   title: "TND-tour",
@@ -39,6 +40,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
+      <MembershipProvider>
       <Script id="safari-viewport-fix">{IOS_SAFARI_VIEWPORT_UNIT_CORRECTION}</Script>
       <body className={cx(sfPro.variable, inter.variable)}>
       <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-100 via-white to-cyan-100" />
@@ -50,6 +52,7 @@ export default async function RootLayout({
         </main>
         <Analytics />
       </body>
+      </MembershipProvider>
     </html>
   );
 }

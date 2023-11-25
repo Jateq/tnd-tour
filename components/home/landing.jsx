@@ -3,7 +3,7 @@
 import Balancer from "react-wrap-balancer";
 import { useState} from "react";
 import Mountains from "@/components/layout/mountains";
-import Landingnavtool from "@/components/layout/landingnavtool";
+import LandingNavTool from "@/components/layout/landingnavtool";
 import { DEPLOY_URL } from "@/lib/constants";
 
 export default function Landing() {
@@ -21,7 +21,7 @@ export default function Landing() {
         <div className="mb-[1px]"></div>
       </div>
       <Mountains/>
-      <Landingnavtool />
+      <LandingNavTool />
 
       <div className="mb-[900px]"></div>
 

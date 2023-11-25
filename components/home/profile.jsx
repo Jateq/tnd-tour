@@ -3,12 +3,15 @@
 import { useState, useMemo } from 'react';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/authOptions";
+import { useMembership } from '../layout/MembershipContext';
 
 import './profile.css'
 import Image from "next/image";
+import Link from "next/link";
 
 function Profile({ session }) {
     const { email, image } = session?.user || {};
+    const { selectedMembership } = useMembership();
 
     //Flights
     const flightsDestination = localStorage.getItem('flightsDestination');
@@ -161,7 +164,26 @@ function Profile({ session }) {
     }, [storedDepartureDate, storedReturnDate, storedAdults, storedChildren, storedStayCity, storedStayHotel]);
 
 
-    const flightsBlock = useMemo(() => (
+    const flightsBlock = useMemo(() => {
+    if (
+        storedFlightsCity === null ||
+        flightsDestination === null ||
+        storedFlightPassengers === null ||
+        storedFlightsDeparture === null ||
+        storedFlightsReturn === null ||
+        flightsPrice === null
+    ) {
+        return (
+            <div>
+                <div>Your Flights</div>
+                <div className='profile-stay-block'>
+                    <p>Nothing booked yet</p>
+                </div>
+
+            </div>
+        );
+    } else {
+        return(
         <div>
             <div>Your Flights</div>
             <div className='profile-stay-block'>
@@ -172,11 +194,23 @@ function Profile({ session }) {
                 <p>for KZT {flightsPrice}</p>
             </div>
         </div>
-    ), []);
+        );
+        }
+    }, [flightsDestination, flightsPrice, storedFlightPassengers, storedFlightsCity, storedFlightsDeparture, storedFlightsReturn]);
 
     const membershipBlock = useMemo(() => (
-        <div>Your membership</div>
-    ), []);
+        <div>
+            <div>Your membership</div>
+            <div className='profile-stay-block'>
+                <p className='italic text-gray-700'>{selectedMembership}</p>
+            </div>
+            <div className='person-info mt-10'>
+                <Link href='/membership'>
+                <button className=''>Change the plan</button>
+                </Link>
+            </div>
+        </div>
+    ), [selectedMembership]);
 
     const notificationsBlock = useMemo(() => (
         <div>Email notifications</div>
