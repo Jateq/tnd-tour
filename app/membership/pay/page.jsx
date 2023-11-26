@@ -88,7 +88,7 @@ const PaymentPage = () => {
             <form>
                 <label>
                     Email:
-                    <input type="text" value={emailF} onChange={(e) => setName(e.target.value)} placeholder="John Doe" />
+                    <input type="text" value={emailF} onChange={(e) => setEmail(e.target.value)} placeholder="john.doe@gmail.com" />
                 </label>
                 <label>
                     Cardholder Name:

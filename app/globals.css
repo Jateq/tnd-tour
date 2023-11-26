@@ -279,6 +279,22 @@
     }
 }
 
+.payment-left button{
+    padding: 10px 5px;
+    color: white;
+    background-color: #0c8de4;
+    border-radius: 10px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 60px;
+    transition: 0.3s;
+}
+.payment-left button:hover{
+    background-color: #0980d0;
+}
+
+
 .payment-right button{
     padding: 10px 5px;
     color: white;
