@@ -7,7 +7,6 @@ const PlansModal = ({ showModal, setShowModal, plan }) => {
 
     const { selectedMembership, selectMembership } = useMembership();
 
-
     const basicFeatures = [
         "Flights all over the world",
         "Meal on the plane for 8 hour or longer flights",
@@ -109,8 +108,8 @@ const PlansModal = ({ showModal, setShowModal, plan }) => {
 
                                     <Link href='/membership/pay'>
                                             <button
-                                                    disabled={selectedMembership === plan}
-                                                    className={selectedMembership === plan ? 'disabled-membership-button' : 'membership-button'}>
+                                                    onClick={() => { localStorage.setItem('unverifiedPlan', plan) }}
+                                                    className='membership-button'>
 
                                             Lets Fly
                                             </button>

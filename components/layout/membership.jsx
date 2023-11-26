@@ -8,7 +8,7 @@ import PlansModal from "@/components/layout/PlansModal";
 export default function Membership() {
   const { selectedMembership, selectMembership } = useMembership();
   const [showModal, setShowModal] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState('basic')
+  const [selectedPlan, setSelectedPlan] = useState(selectedMembership)
 
   const email = localStorage.getItem('email')
   const name = localStorage.getItem('name')
