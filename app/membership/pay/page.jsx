@@ -19,15 +19,15 @@ const PaymentPage = () => {
             <div className='payment-left'>
             <p> Enter your payment details</p>
             <form>
-                <label>
+                <label>Card number:
                     <input
+                        className='payment-left-card'
                         type="text"
                         value={cardNumber}
                         onChange={(e) => setCardNumber(e.target.value)}
-                        placeholder="1234 5678 9012 3456"
+                        placeholder=" 1234 5678 9012 3456"
                     />
                 </label>
-                <br />
                 <label>
                     Expiry Date:
                     <input
@@ -37,17 +37,14 @@ const PaymentPage = () => {
                         placeholder="MM/YYYY"
                     />
                 </label>
-                <br />
                 <label>
                     CVC:
                     <input type="text" value={cvc} onChange={(e) => setCvc(e.target.value)} placeholder="123" />
                 </label>
-                <br />
                 <label>
                     Cardholder Name:
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="John Doe" />
                 </label>
-                <br />
                 <button type="button" onClick={handlePayment}>
                     Pay Now
                 </button>
@@ -55,7 +52,7 @@ const PaymentPage = () => {
             </div>
 
 
-            <div className='payment-left'>
+            <div className='payment-right'>
 
 
             </div>

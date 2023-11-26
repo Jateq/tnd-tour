@@ -223,14 +223,54 @@
 
 .payment{
     display: flex;
-    justify-content: center;
     gap: 30px;
+    width: 50%;
+}
+
+.payment p{
+    text-align: center;
 }
 
 .payment-left{
+    gap: 20px;
+    width: 400px;
     display: flex;
     justify-content: center;
-    padding: 30px;
-    border: solid 1px black;
     flex-direction: column;
+    margin-top: -50px;
+}
+
+.payment-left input{
+    width: 400px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.payment-left form{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.payment-left label{
+    color: #5b5b5b;
+    font-size: 14px;
+}
+
+.payment-right{
+    background-color: #9cd5d5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 400px;
+}
+@media (max-width: 968px) {
+    .payment-right {
+        display: none;
+    }
+    .payment-left{
+        margin-left: -50px;
+
+    }
 }
