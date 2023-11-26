@@ -213,11 +213,20 @@ function Profile({ session }) {
     ), [selectedMembership]);
 
     const notificationsBlock = useMemo(() => (
-        <div>Email notifications</div>
+        <div>
+        <div>Privacy and Policy</div>
+            <div className='profile-stay-block'>
+                <p>You can read it <a href='/privacy-policy'>here</a></p>
+            </div>
+        </div>
+
     ), []);
 
     const helpBlock = useMemo(() => (
+        <div>
         <div>Help</div>
+            <div className='profile-stay-block'> <p>Contact with us: <a href='https://t.me/jateq'> here</a></p> </div>
+        </div>
     ), []);
 
 
@@ -250,7 +259,7 @@ function Profile({ session }) {
                             Your membership
                         </div>
                         <div onClick={() => handleNavClick('notifications')}>
-                            Email notifications
+                            Privacy and Policy
                         </div>
                         <div onClick={() => handleNavClick('help')}>
                             Help

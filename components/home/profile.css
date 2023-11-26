@@ -184,3 +184,12 @@ a{
     font-size: 18px;
 }
 
+.profile-stay-block a{
+    font-size: 18px;
+    color: #0c8de4;
+    padding:0; margin: 0;
+}
+
+.profile-stay-block a:hover{
+    text-decoration: underline;
+}
