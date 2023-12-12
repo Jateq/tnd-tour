@@ -4,7 +4,17 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ["lh3.googleusercontent.com", "vercel.com"],
-  }
+  },
+  // ... other Next.js config values
 };
 
-module.exports = nextConfig;
+const runtimeCaching = require('next-pwa/cache')
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  // disable: process.env.NODE_ENV === "development",
+  runtimeCaching
+});
+
+module.exports = withPWA(nextConfig);
