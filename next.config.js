@@ -8,13 +8,16 @@ const nextConfig = {
   // ... other Next.js config values
 };
 
-const runtimeCaching = require('next-pwa/cache')
-const withPWA = require('next-pwa')({
+const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
-  register: true,
-  skipWaiting: true,
-  // disable: process.env.NODE_ENV === "development",
-  runtimeCaching
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  swcMinify: true,
+  disable: false,
+  workboxOptions: {
+    disableDevLogs: true,
+  },
 });
 
 module.exports = withPWA(nextConfig);

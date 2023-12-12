@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import { MembershipProvider } from "@/components/layout/MembershipContext";
 
 export const metadata = {
+    manifest: '/manifest.json',
   title: "TND-tour",
   description:
     "Travel with TND",
