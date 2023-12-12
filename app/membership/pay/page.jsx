@@ -10,7 +10,7 @@ const PaymentPage = () => {
 
 
     const { selectedMembership, selectMembership } = useMembership();
-    const [selectedPlan, setSelectedPlan] = useState(localStorage.getItem('unverifiedPlan') || '');
+    const [selectedPlan, setSelectedPlan] = useState( '');
 
     const [emaild, setEmaild] = useState('');
     const [named, setNamed] = useState('');
@@ -21,11 +21,13 @@ const PaymentPage = () => {
         const emailF = localStorage.getItem('email');
         const nameF = localStorage.getItem('name');
         const surnameF = localStorage.getItem('surname');
+        const plan = localStorage.getItem('unverifiedPlan');
 
 
         if (emailF) setEmaild(emailF);
         if (nameF) setNamed(nameF);
         if (surnameF) setSurnamed(surnameF);
+        if(plan) setSelectedPlan(plan);
     }, []);
 
 
