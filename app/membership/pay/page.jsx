@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {MembershipProvider, useMembership} from "@/components/layout/MembershipContext";
 import PaymentModal from "@/components/layout/paymentModal";
 
@@ -12,16 +12,30 @@ const PaymentPage = () => {
     const { selectedMembership, selectMembership } = useMembership();
     const [selectedPlan, setSelectedPlan] = useState(localStorage.getItem('unverifiedPlan') || '');
 
-    const emailF = localStorage.getItem('email');
-    const nameF = localStorage.getItem('name');
-    const surnameF = localStorage.getItem('surname');
-    const totalName = nameF + ' ' + surnameF
+    const [emaild, setEmaild] = useState('');
+    const [named, setNamed] = useState('');
+    const [surnamed, setSurnamed] = useState('');
+    let totalName = named + ' ' + surnamed;
+
+    useEffect(() => {
+        const emailF = localStorage.getItem('email');
+        const nameF = localStorage.getItem('name');
+        const surnameF = localStorage.getItem('surname');
+
+
+        if (emailF) setEmaild(emailF);
+        if (nameF) setNamed(nameF);
+        if (surnameF) setSurnamed(surnameF);
+    }, []);
+
+
+
 
     const [cardNumber, setCardNumber] = useState('');
     const [expiryDate, setExpiryDate] = useState('');
     const [cvc, setCvc] = useState('');
     const [name, setName] = useState(totalName);
-    const [email, setEmail] = useState(emailF);
+    const [email, setEmail] = useState(emaild);
 
     const handleCheckboxChange = (plan) => {
         // Update the selected plan in the state
@@ -88,7 +102,7 @@ const PaymentPage = () => {
             <form>
                 <label>
                     Email:
-                    <input type="text" value={emailF} onChange={(e) => setEmail(e.target.value)} placeholder="john.doe@gmail.com" />
+                    <input type="text" value={emaild} onChange={(e) => setEmail(e.target.value)} placeholder="john.doe@gmail.com" />
                 </label>
                 <label>
                     Cardholder Name:

@@ -10,10 +10,6 @@ export default function Membership() {
   const [showModal, setShowModal] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(selectedMembership)
 
-  const email = localStorage.getItem('email')
-  const name = localStorage.getItem('name')
-  const surname = localStorage.getItem('surname')
-
   const openModal = (plan) => {
     setSelectedPlan(plan);
     setShowModal(true);

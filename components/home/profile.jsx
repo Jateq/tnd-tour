@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import {useState, useMemo, useEffect} from 'react';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/authOptions";
 import { useMembership } from '../layout/MembershipContext';
@@ -12,25 +12,62 @@ import Link from "next/link";
 function Profile({ session }) {
     const { email, image } = session?.user || {};
     const { selectedMembership } = useMembership();
+    const [flightsDestination, setFlightsDestination] = useState("");
+    const [flightsPrice, setFlightsPrice] = useState("");
+    const [flightsCity, setFlightsCity] = useState("");
+    // const [flightsTo, setFlightsTo] = useState("");
+    const [flightsDeparture, setFlightsDeparture] = useState("");
+    const [flightsReturn, setFlightsReturn] = useState("");
+    const [flightPassengers, setFlightPassengers] = useState("");
 
     //Flights
-    const flightsDestination = localStorage.getItem('flightsDestination');
-    const flightsPrice = localStorage.getItem('flightsPrice');
-    const storedFlightsCity = localStorage.getItem('flightsCity');
-    // const storedFlightsTo = localStorage.getItem('flightsTo');
-    const storedFlightsDeparture = localStorage.getItem('flightsDeparture');
-    const storedFlightsReturn = localStorage.getItem('flightsReturn');
-    const storedFlightPassengers = localStorage.getItem('flightsPassengers');
-    console.log( storedFlightsCity, storedFlightsDeparture, storedFlightsReturn, storedFlightPassengers);
+    useEffect(() => {
+        // Retrieve values from localStorage
+        const storedFlightsDestination = localStorage.getItem('flightsDestination');
+        const storedFlightsPrice = localStorage.getItem('flightsPrice');
+        const storedFlightsCity = localStorage.getItem('flightsCity');
+        // const storedFlightsTo = localStorage.getItem('flightsTo');
+        const storedFlightsDeparture = localStorage.getItem('flightsDeparture');
+        const storedFlightsReturn = localStorage.getItem('flightsReturn');
+        const storedFlightPassengers = localStorage.getItem('flightsPassengers');
 
+        // Assign values to state using corresponding set functions
+        if (storedFlightsDestination) setFlightsDestination(storedFlightsDestination);
+        if (storedFlightsPrice) setFlightsPrice(storedFlightsPrice);
+        if (storedFlightsCity) setFlightsCity(storedFlightsCity);
+        // if (storedFlightsTo) setFlightsTo(storedFlightsTo);
+        if (storedFlightsDeparture) setFlightsDeparture(storedFlightsDeparture);
+        if (storedFlightsReturn) setFlightsReturn(storedFlightsReturn);
+        if (storedFlightPassengers) setFlightPassengers(storedFlightPassengers);
+
+        console.log(storedFlightsCity, storedFlightsDeparture, storedFlightsReturn, storedFlightPassengers);
+    }, []);
 
     // Stays
-    const storedStayCity = localStorage.getItem('stayCity');
-    const storedStayHotel = localStorage.getItem('stayHotel');
-    const storedAdults = localStorage.getItem('adults');
-    const storedChildren = localStorage.getItem('children');
-    const storedDepartureDate = localStorage.getItem('departureDate');
-    const storedReturnDate = localStorage.getItem('returnDate');
+    const [storedStayCity, setStayCity] = useState("");
+    const [storedStayHotel, setStayHotel] = useState("");
+    const [storedAdults, setAdults] = useState("");
+    const [storedChildren, setChildren] = useState("");
+    const [storedDepartureDate, setDepartureDate] = useState("");
+    const [storedReturnDate, setReturnDate] = useState("");
+
+    useEffect(() => {
+        // Retrieve values from localStorage
+        const storedStayCity = localStorage.getItem('stayCity');
+        const storedStayHotel = localStorage.getItem('stayHotel');
+        const storedAdults = localStorage.getItem('adults');
+        const storedChildren = localStorage.getItem('children');
+        const storedDepartureDate = localStorage.getItem('departureDate');
+        const storedReturnDate = localStorage.getItem('returnDate');
+
+        // Assign values to state using corresponding set functions
+        if (storedStayCity) setStayCity(storedStayCity);
+        if (storedStayHotel) setStayHotel(storedStayHotel);
+        if (storedAdults) setAdults(storedAdults);
+        if (storedChildren) setChildren(storedChildren);
+        if (storedDepartureDate) setDepartureDate(storedDepartureDate);
+        if (storedReturnDate) setReturnDate(storedReturnDate);
+    }, []);
 
     const [name, setName] = useState(email);
     const [age, setAge] = useState(19);
@@ -166,11 +203,11 @@ function Profile({ session }) {
 
     const flightsBlock = useMemo(() => {
     if (
-        storedFlightsCity === null ||
+        flightsCity === null ||
         flightsDestination === null ||
-        storedFlightPassengers === null ||
-        storedFlightsDeparture === null ||
-        storedFlightsReturn === null ||
+        flightPassengers === null ||
+        flightsDeparture === null ||
+        flightsReturn === null ||
         flightsPrice === null
     ) {
         return (
@@ -188,15 +225,15 @@ function Profile({ session }) {
             <div>Your Flights</div>
             <div className='profile-stay-block'>
                 <p>You have reserved flight from</p>
-                <p>{storedFlightsCity} to {flightsDestination}</p>
-                <p>for {storedFlightPassengers} passenger/s</p>
-                <p>from {storedFlightsDeparture} till {storedFlightsReturn}</p>
+                <p>{flightsCity} to {flightsDestination}</p>
+                <p>for {flightPassengers} passenger/s</p>
+                <p>from {flightsDeparture} till {flightsReturn}</p>
                 <p>for KZT {flightsPrice}</p>
             </div>
         </div>
         );
         }
-    }, [flightsDestination, flightsPrice, storedFlightPassengers, storedFlightsCity, storedFlightsDeparture, storedFlightsReturn]);
+    }, [flightsDestination, flightsPrice, flightPassengers, flightsCity, flightsDeparture, flightsReturn]);
 
     const membershipBlock = useMemo(() => (
         <div>
