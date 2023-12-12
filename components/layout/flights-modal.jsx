@@ -1,13 +1,29 @@
-import {Fragment, useEffect, useState} from "react";
+'use client';
+
+import React, {Fragment, useEffect, useState} from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import Link from "next/link";
 
 const FlightsModal = ({ showModal, setShowModal, flight }) => {
+console.log(flight)
 
-        const flightsCity = localStorage.getItem('flightsCity');
-        const flightsDeparture = localStorage.getItem('flightsDeparture');
-        const flightsReturn = localStorage.getItem('flightsReturn');
-        const flightsPassengers = parseInt(localStorage.getItem('flightsPassengers'), 10);
+    const [flightsCity, setFlightsCity] = useState("");
+    const [flightsDeparture, setFlightsDeparture] = useState("");
+    const [flightsReturn, setFlightsReturn] = useState("");
+    const [flightsPassengers, setFlightsPassengers] = useState(0);
+
+    useEffect(() => {
+        const storedFlightsCity = localStorage.getItem('flightsCity');
+        const storedFlightsDeparture = localStorage.getItem('flightsDeparture');
+        const storedFlightsReturn = localStorage.getItem('flightsReturn');
+        const storedFlightsPassengers = parseInt(localStorage.getItem('flightsPassengers'), 10);
+
+        if (storedFlightsCity) setFlightsCity(storedFlightsCity);
+        if (storedFlightsDeparture) setFlightsDeparture(storedFlightsDeparture);
+        if (storedFlightsReturn) setFlightsReturn(storedFlightsReturn);
+        if (!isNaN(storedFlightsPassengers)) setFlightsPassengers(storedFlightsPassengers);
+
+    }, []);
     const handleOnClick = (flight) => {
         localStorage.setItem('flightsDestination', flight.destination);
         localStorage.setItem('flightsPrice', flight.price);
