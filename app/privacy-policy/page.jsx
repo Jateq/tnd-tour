@@ -1,8 +1,8 @@
 export default function PrivacyPolicyPage() {
 
     return (
-    <div className=&apos;flex flex-col justify-center text-justify px-[120px] gap-2 mt-5 mb-10&apos;>
-        <h1 className=&apos;text-2xl mb-2&apos;>Privacy Policy</h1>
+    <div className='flex flex-col justify-center text-justify px-[120px] gap-2 mt-5 mb-10'>
+        <h1 className='text-2xl mb-2'>Privacy Policy</h1>
 
         <p>At TNDtour, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by TNDtour and how we use it.</p>
 
